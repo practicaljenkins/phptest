@@ -26,7 +26,7 @@ pipeline {
       steps {
         script{
           def server = Artifactory.server 'Practical Jenkins Artifactory'
-          def uploadSpec = readFile '${WORKSPACE}/pkg_resources/upload.json'
+          def uploadSpec = readFile 'pkg_resources/upload.json'
           def buildInfo = server.upload spec: uploadSpec
           server.publishBuildInfo buildInfo
         }
