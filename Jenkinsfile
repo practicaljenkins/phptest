@@ -20,8 +20,10 @@ pipeline {
           }
         }
         stage('SonarQube analysis') {
-          withSonarQubeEnv('Practical Jenkins SonarQube') {
-            sh "/opt/sonarqube-scanner/bin/sonar-scanner"
+          steps {
+            withSonarQubeEnv('Practical Jenkins SonarQube') {
+              sh "/opt/sonarqube-scanner/bin/sonar-scanner"
+            }
           }
         }
       }
