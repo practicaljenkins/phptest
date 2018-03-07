@@ -12,18 +12,18 @@ pipeline {
 
   stages {
     stage('Build') {
-      parallel {
-        stage('PHPUnit Test') {
-          steps {
-            echo 'Running PHPUnit...'
-            sh '/bin/phpunit ${WORKSPACE}'
-          }
+      stage('PHPUnit Test') {
+        steps {
+          echo 'Running PHPUnit...'
+          sh '/bin/phpunit ${WORKSPACE}'
         }
-        stage('SonarQube analysis') {
-          steps {
-            withSonarQubeEnv('Practical Jenkins Sonarqube') {
-              sh "/opt/sonarqube-scanner/bin/sonar-scanner"
-            }
+      }
+      stage('SonarQube analysis') {
+        steps {
+          withSonarQubeEnv('Practical Jenkins Sonarqube') {
+            sh 'echo "sonar.projectKey=production:phptest" > {WORKSPACE}/sonar-project.properties'
+            sh 'echo "sonar.sources=." >> {WORKSPACE}/sonar-project.properties'
+            sh '/opt/sonarqube-scanner/bin/sonar-scanner'
           }
         }
       }
