@@ -11,11 +11,6 @@ pipeline {
   }
 
   stages {
-    stage('Code Checkout') {
-      steps {
-          checkout scm
-      }
-    }
     stage('Build') {
       parallel {
         stage('PHPUnit Test') {
