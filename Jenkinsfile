@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Create RPM') {
       steps {
-        sh '/usr/local/bin/fpm -s dir -t rpm -a all -n ${JOB_NAME} -v 1.0 --iteration 1 ${WORKSPACE}/src/=/var/www/${JOB_NAME}'
+        sh '/usr/local/bin/fpm -s dir -t rpm -a all -n phptest -v 1.0 --iteration 1 ${WORKSPACE}/src/=/var/www/phptest'
       }
     }
   }
