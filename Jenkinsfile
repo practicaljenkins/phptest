@@ -10,6 +10,7 @@ pipeline {
     stage('Code Checkout') {
       steps {
           checkout scm
+      }
     }
     stage('Build') {
       parallel {
