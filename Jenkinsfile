@@ -1,6 +1,10 @@
 pipeline {
 
-  agent none
+  agent {
+    node {
+      label 'master'
+    }
+  }
 
   options {
     timestamps()
