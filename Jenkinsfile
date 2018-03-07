@@ -20,9 +20,8 @@ pipeline {
           }
         }
         stage('SonarQube analysis') {
-          def scannerHome = tool 'Sonarqube Scanner'
           withSonarQubeEnv('Practical Jenkins SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner"
+            sh "/opt/sonarqube-scanner/bin/sonar-scanner"
           }
         }
       }
