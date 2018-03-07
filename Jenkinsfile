@@ -21,7 +21,7 @@ pipeline {
 
   post {
       failure {
-        slackSend 'failed ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)'
+        slackSend 'failed ${JOB_NAME} ${BUILD_NUMBER} (<${BUILD_URL}|Open>)'
       }
   }
 }
