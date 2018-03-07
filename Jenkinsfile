@@ -17,13 +17,9 @@ pipeline {
         sh '/bin/phpunit ${WORKSPACE}'
       }
     }
-    stage('SonarQube analysis') {
+    stage('Create RPM') {
       steps {
-        withSonarQubeEnv('Practical Jenkins Sonarqube') {
-          sh 'echo "sonar.projectKey=production:phptest" > ${WORKSPACE}/sonar-project.properties'
-          sh 'echo "sonar.sources=." >> ${WORKSPACE}/sonar-project.properties'
-          sh '/opt/sonarqube-scanner/bin/sonar-scanner'
-        }
+        sh 'fpm -s ${WORKSPACE} -t rpm -a all -n ${JOB_BASE_NAME} -v 1.0 --iteration 1 src/=/var/www/${JOB_BASE_NAME} --exclude "var/www/${JOB_BASE_NAME}/Jenkinsfile"'
       }
     }
   }
