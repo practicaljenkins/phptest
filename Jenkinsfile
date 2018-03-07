@@ -25,7 +25,7 @@ pipeline {
     stage('Artifactory  upload'){
       steps {
         script{
-          def server = Artifactory.server SERVER_ID
+          def server = Artifactory.server 'Practical Jenkins Artifactory'
           def uploadSpec = readFile '${WORKSPACE}/pkg_resources/upload.json'
           def buildInfo = server.upload spec: uploadSpec
           server.publishBuildInfo buildInfo
