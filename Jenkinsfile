@@ -19,6 +19,10 @@ pipeline {
             sh '/bin/phpunit ${WORKSPACE}'
           }
         }
+        stage('SonarQube analysis') {
+          withSonarQubeEnv('Practical Jenkins SonarQube') {
+          }
+        }
       }
     }
   }
