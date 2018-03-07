@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Create RPM') {
       steps {
-        sh '/usr/local/bin/fpm -s ${WORKSPACE} -t rpm -a all -n ${JOB_BASE_NAME} -v 1.0 --iteration 1 src/=/var/www/${JOB_BASE_NAME} --exclude "var/www/${JOB_BASE_NAME}/Jenkinsfile"'
+        sh '/usr/local/bin/fpm -s dir -t rpm -a all -n ${JOB_BASE_NAME} -v 1.0 --iteration 1 ${WORKSPACE}/src/=/var/www/${JOB_BASE_NAME}'
       }
     }
   }
