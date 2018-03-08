@@ -17,13 +17,15 @@ pipeline {
         sh '/bin/phpunit ${WORKSPACE}'
       }
     }
-    stage('View ENVs') {
+    stage('Merge PR') {
+      when {
+        branch 'PR-*'
+      }
       steps {
-        sh 'echo ${BRANCH_NAME}'
-        sh 'echo ${CHANGE_ID}'
-        sh 'echo ${CHANGE_TARGET}'
-        sh 'echo ${GIT_URL}'
-        sh 'echo ${GIT_LOCAL_BRANCH}'
+        git credentialsId: 'jenkins-ssh', url: 'git@github.com:practicaljenkins/phptest.git'
+        sh 'git checkout ${CHANGE_TARGET}'
+        sh 'git merge --no-ff ${BRANCH_SOURCE}'
+        sh 'git push origin ${CHANGE_TARGET}'
       }
     }
   }
