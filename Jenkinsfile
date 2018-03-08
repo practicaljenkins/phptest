@@ -22,10 +22,12 @@ pipeline {
         branch 'PR-*'
       }
       steps {
-        sshagent(['jenkins-ssh']) {
-          sh 'git checkout ${CHANGE_TARGET}'
-          sh 'git merge --no-ff ${GIT_COMMIT}'
-          sh 'git push origin ${CHANGE_TARGET}'
+        script{
+          sshagent(['jenkins-ssh']) {
+            sh 'git checkout ${CHANGE_TARGET}'
+            sh 'git merge --no-ff ${GIT_COMMIT}'
+            sh 'git push origin ${CHANGE_TARGET}'
+          }
         }
       }
     }
