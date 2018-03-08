@@ -15,7 +15,6 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
-        sh 'echo ${GIT_BRANCH}'
       }
     }
     stage('Merge PR') {
