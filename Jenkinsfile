@@ -15,14 +15,20 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
+        sh 'git remote set-url origin git@github.com:practicaljenkins/phptest.git'
       }
     }
-  }
-
-  post {
-      failure {
-        slackSend "Build failed - Job: ${JOB_NAME} - Build No.: ${BUILD_NUMBER} - Build URL: (<${BUILD_URL}|Open>)"
+    stage('Merge PR') {
+      when {
+        branch 'PR-*'
       }
+      steps {
+        sh 'git remote set-url origin git@github.com:practicaljenkins/phptest.git'
+        sh 'git checkout ${CHANGE_TARGET}'
+        sh 'git merge --no-ff ${GIT_COMMIT}'
+        sh 'git push origin ${CHANGE_TARGET}'
+      }
+    }
   }
 }
 
