@@ -23,7 +23,7 @@ pipeline {
       }
       steps {
         script{
-          sshagent(['jenkins-ssh']) {
+          withCredentials([usernamePassword(credentialsId: 'jenkins-secret', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
             sh 'git checkout ${CHANGE_TARGET}'
             sh 'git merge --no-ff ${GIT_COMMIT}'
             sh 'git push origin ${CHANGE_TARGET}'
