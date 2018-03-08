@@ -24,7 +24,7 @@ pipeline {
       steps {
         git credentialsId: 'jenkins-ssh', url: 'git@github.com:practicaljenkins/phptest.git'
         sh 'git checkout ${CHANGE_TARGET}'
-        sh 'git merge --no-ff ${BRANCH_SOURCE}'
+        sh 'git merge --no-ff ${BRANCH_NAME}'
         sh 'git push origin ${CHANGE_TARGET}'
       }
     }
