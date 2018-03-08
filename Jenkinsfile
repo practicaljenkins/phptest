@@ -19,7 +19,9 @@ pipeline {
     }
     stage('View ENV variables') {
       steps {
-        echo '${BRANCH_NAME} ${CHANGE_ID} ${CHANGE_TARGET}'
+        sh "echo ${BRANCH_NAME}"
+        sh "echo ${CHANGE_ID}"
+        sh "echo ${CHANGE_TARGET}"
       }
     }
   }
