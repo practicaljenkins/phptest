@@ -17,16 +17,6 @@ pipeline {
         sh '/bin/phpunit ${WORKSPACE}'
       }
     }
-    stage('Merge PR') {
-      when {
-        branch 'PR-*'
-      }
-      steps {
-        sh 'git checkout ${CHANGE_TARGET}'
-        sh 'git merge --no-ff ${GIT_COMMIT}'
-        sh 'git push origin ${CHANGE_TARGET}'
-      }
-    }
   }
 }
 
