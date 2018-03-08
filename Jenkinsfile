@@ -17,12 +17,12 @@ pipeline {
         sh '/bin/phpunit ${WORKSPACE}'
       }
     }
-  }
-
-  post {
-    failure {
-      slackSend "Build failed - Job: ${JOB_NAME} - Build No.: ${BUILD_NUMBER} - Build URL: (<${BUILD_URL}|Open>)"
+    stage('View ENV variables') {
+      steps {
+        echo '${BRANCH_NAME} ${CHANGE_ID} ${CHANGE_TARGET}'
+      }
     }
   }
+
 }
 
