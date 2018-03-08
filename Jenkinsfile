@@ -23,6 +23,7 @@ pipeline {
         sh 'echo ${CHANGE_ID}'
         sh 'echo ${CHANGE_TARGET}'
         sh 'echo ${GIT_URL}'
+        sh 'echo ${JOB_NAME}'
       }
     }
   }
