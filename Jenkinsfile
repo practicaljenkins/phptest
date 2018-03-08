@@ -29,5 +29,6 @@ pipeline {
         sh 'git push origin ${CHANGE_TARGET}'
       }
     }
+  }
 }
 
