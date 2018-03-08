@@ -22,6 +22,7 @@ pipeline {
         sh 'echo ${BRANCH_NAME}'
         sh 'echo ${CHANGE_ID}'
         sh 'echo ${CHANGE_TARGET}'
+        sh '/bin/git branch'
       }
     }
   }
