@@ -15,7 +15,7 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
-        sh 'git remote set-url origin git@github.com:practicaljenkins/phptest.git'
+        sh 'echo ${GIT_BRANCH}'
       }
     }
     stage('Merge PR') {
