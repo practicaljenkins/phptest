@@ -22,10 +22,11 @@ pipeline {
         branch 'PR-*'
       }
       steps {
-        git credentialsId: 'jenkins-ssh', url: 'git@github.com:practicaljenkins/phptest.git'
-        sh 'git checkout ${CHANGE_TARGET}'
-        sh 'git merge --no-ff ${GIT_COMMIT}'
-        sh 'git push origin ${CHANGE_TARGET}'
+        sshagent(['jenkins-ssh']) {
+          sh 'git checkout ${CHANGE_TARGET}'
+          sh 'git merge --no-ff ${GIT_COMMIT}'
+          sh 'git push origin ${CHANGE_TARGET}'
+        }
       }
     }
   }
