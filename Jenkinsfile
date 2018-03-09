@@ -18,15 +18,15 @@ pipeline {
         sh 'git remote set-url origin git@github.com:practicaljenkins/phptest.git'
       }
     }
-    stage('Merge PR') {
-      when {
-        branch 'PR-*'
-      }
+    stage('JIRA') {
       steps {
-        sh 'git remote set-url origin git@github.com:practicaljenkins/phptest.git'
-        sh 'git checkout ${CHANGE_TARGET}'
-        sh 'git merge --no-ff ${GIT_COMMIT}'
-        sh 'git push origin ${CHANGE_TARGET}'
+        script {
+          def issue = [fields: [ project: [key: 'PJD'],
+                             summary: 'Release 1.2.0',
+                             description: 'Review changes for release 1.2.0',
+                             issuetype: [name: 'Task']]]
+          def newIssue = jiraNewIssue issue: issue
+        }
       }
     }
   }
