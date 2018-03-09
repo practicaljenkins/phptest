@@ -19,6 +19,8 @@ pipeline {
         sh 'echo ${GIT_AUTHOR_EMAIL}'
         sh 'echo ${GIT_COMMITTER_NAME}'
         sh 'echo ${GIT_AUTHOR_NAME}'
+        sh 'echo ${GIT_BRANCH}'
+        sh 'echo ${GIT_COMMIT}'
       }
     }
     stage('JIRA') {
