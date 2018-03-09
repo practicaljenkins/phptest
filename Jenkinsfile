@@ -15,6 +15,7 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
+        sh 'echo ${GIT_COMMITTER_EMAIL}'
       }
     }
     stage('JIRA') {
