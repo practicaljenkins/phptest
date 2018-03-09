@@ -19,14 +19,12 @@ pipeline {
     }
     stage('JIRA') {
       steps {
-        withEnv(['JIRA_SITE="practical-jenkins-jira"']) {
-          script {
-            def issue = [fields: [ project: [key: 'PJD'],
-                               summary: 'Release 1.2.0',
-                               description: 'Review changes for release 1.2.0',
-                               issuetype: [name: 'Task']]]
-            def newIssue = jiraNewIssue issue: issue
-          }
+        script {
+          def issue = [fields: [ project: [key: 'PJD'],
+                             summary: 'Release 1.2.0',
+                             description: 'Review changes for release 1.2.0',
+                             issuetype: [name: 'Task']]]
+          response = jiraNewIssue issue: issue, , site: 'practical-jenkins-jira'
         }
       }
     }
