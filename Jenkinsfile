@@ -20,11 +20,11 @@ pipeline {
     stage('JIRA') {
       steps {
         script {
-          def issue = [fields: [ project: [key: 'PJD'],
+          def issueInfo = [fields: [ project: [key: 'PJD'],
                              summary: 'Release 1.2.0',
                              description: 'Review changes for release 1.2.0',
                              issuetype: [name: 'Task']]]
-          response = jiraNewIssue issue: issue, , site: 'practical-jenkins-jira'
+          response = jiraNewIssue issue: issueInfo, site: 'practical-jenkins-jira'
         }
       }
     }
