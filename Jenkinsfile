@@ -15,12 +15,6 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
-        sh 'echo ${GIT_COMMITTER_EMAIL}'
-        sh 'echo ${GIT_AUTHOR_EMAIL}'
-        sh 'echo ${GIT_COMMITTER_NAME}'
-        sh 'echo ${GIT_AUTHOR_NAME}'
-        sh 'echo ${GIT_BRANCH}'
-        sh 'echo ${GIT_COMMIT}'
       }
     }
     stage('JIRA') {
@@ -31,6 +25,7 @@ pipeline {
                              description: 'Review changes for release 1.2.0',
                              issuetype: [name: 'Task']]]
           response = jiraNewIssue issue: issueInfo, site: 'practical-jenkins-jira'
+          echo response.data.toString()
         }
       }
     }
