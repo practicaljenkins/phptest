@@ -20,7 +20,7 @@ pipeline {
     }
     stage('JIRA') {
       steps {
-        withEnv(['JIRA_SITE="Practical Jenkins JIRA"']) {
+        withEnv(['JIRA_SITE="practical-jenkins-jira"']) {
           script {
             def issue = [fields: [ project: [key: 'PJD'],
                                summary: 'Release 1.2.0',
