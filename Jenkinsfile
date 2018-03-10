@@ -21,7 +21,7 @@ pipeline {
       steps {
         script {
           def issue = jiraGetIssue idOrKey: env.GIT_BRANCH, site: 'practical-jenkins-jira'
-          echo issue.code
+          echo issue.code.toString()
         }
       }
     }
