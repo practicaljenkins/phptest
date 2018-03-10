@@ -20,7 +20,7 @@ pipeline {
     stage('JIRA') {
       steps {
         script {
-          def issue = jiraGetIssue idOrKey: ${GIT_BRANCH}, site: 'practical-jenkins-jira'
+          def issue = jiraGetIssue idOrKey: env.GIT_BRANCH, site: 'practical-jenkins-jira'
           echo issue.data.toString()
         }
       }
