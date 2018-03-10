@@ -29,6 +29,7 @@ pipeline {
                              description: 'Review changes for build v1.1.0',
                              issuetype: [name: 'Task']]]
             response = jiraNewIssue issue: issueInfo, site: 'practical-jenkins-jira'
+            echo response.data.toString()
           }
         }
       }
