@@ -15,9 +15,14 @@ pipeline {
       steps {
         echo 'Running PHPUnit...'
         sh '/bin/phpunit ${WORKSPACE}'
-        sh 'echo ${BRANCH_NAME}'
-        sh 'echo ${GIT_BRANCH}'
-        sh 'echo ${GIT_LOCAL_BRANCH}'
+      }
+    }
+    stage('JIRA') {
+      steps {
+        script {
+          def issue = jiraGetIssue idOrKey: ${GIT_BRANCH}, site: 'practical-jenkins-jira'
+          echo issue.data.toString()
+        }
       }
     }
   }
