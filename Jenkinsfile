@@ -22,7 +22,7 @@ pipeline {
         script {
           def issue = jiraGetIssue idOrKey: env.GIT_BRANCH, site: 'practical-jenkins-jira'
           if (issue.code.toString() == '200') {
-            response = jiraAddComment site: 'practical-jenkins-jira', idOrKey: env.GIT_BRANCH, comment: "Build result: Job - env.JOB_NAME, Build number - env.BUILD_NUMBER, Build URL - env.BUILD_URL"
+            response = jiraAddComment site: 'practical-jenkins-jira', idOrKey: env.GIT_BRANCH, comment: "Build result: Job - ${JOB_NAME} Build number - ${BUILD_NUMBER} Build URL - ${BUILD_URL}"
           } else {
             def issueInfo = [fields: [ project: [key: 'PJD'],
                              summary: 'Review build v1.1.0',
